@@ -33,7 +33,7 @@ prompt APPLICATION 214144 - Gestión de Estudiantes
 -- Application Export:
 --   Application:     214144
 --   Name:            Gestión de Estudiantes
---   Date and Time:   16:01 Thursday November 27, 2025
+--   Date and Time:   20:37 Thursday November 27, 2025
 --   Exported By:     ANDRESFELIPEGARCIASOSA35@GMAIL.COM
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -108,7 +108,7 @@ wwv_imp_workspace.create_flow(
 ,p_substitution_value_01=>unistr('Gesti\00F3n de Estudiantes')
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>6
-,p_version_scn=>15676543136316
+,p_version_scn=>15676613504851
 ,p_print_server_type=>'INSTANCE'
 ,p_file_storage=>'DB'
 ,p_is_pwa=>'Y'
@@ -1113,10 +1113,13 @@ wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(113248036839173271805)
 ,p_plug_name=>'Inicio'
 ,p_title=>'Registro de Asistencia Estudiantil'
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
-,p_plug_template=>4072358936313175081
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>2674017834225413037
 ,p_plug_display_sequence=>10
 ,p_location=>null
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p>Sistema para registrar y consultar la asistencia diaria de estudiantes.</p>',
+'<p>Usa los botones de abajo para gestionar estudiantes o marcar asistencia.</p>'))
 ,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
   'expand_shortcuts', 'N',
   'output_as', 'HTML')).to_clob
@@ -1134,53 +1137,64 @@ wwv_flow_imp_page.create_page_plug(
 ,p_menu_template_id=>4072363345357175094
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(113248036976607271806)
-,p_button_sequence=>10
-,p_button_plug_id=>wwv_flow_imp.id(113248036839173271805)
-,p_button_name=>'BTN_ESTUDIANTES'
-,p_button_action=>'REDIRECT_PAGE'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>4072362960822175091
-,p_button_image_alt=>unistr('Gesti\00F3n de Estudiantes')
-,p_button_redirect_url=>'f?p=&APP_ID.:2:&SESSION.::&DEBUG.:::'
-,p_grid_new_row=>'Y'
-);
-wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(113248037264568271809)
-,p_button_sequence=>20
+,p_button_sequence=>10
 ,p_button_plug_id=>wwv_flow_imp.id(113248036839173271805)
 ,p_button_name=>'BTN_REGISTRAR_ESTUDIANTE'
 ,p_button_action=>'REDIRECT_PAGE'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>4072362960822175091
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>2082829544945815391
+,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Registrar Estudiante'
 ,p_button_redirect_url=>'f?p=&APP_ID.:3:&SESSION.::&DEBUG.:::'
+,p_icon_css_classes=>'fa-users'
 ,p_grid_new_row=>'Y'
+,p_grid_column=>1
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(113248037129210271808)
-,p_button_sequence=>30
+ p_id=>wwv_flow_imp.id(113248036976607271806)
+,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_imp.id(113248036839173271805)
-,p_button_name=>'BTN_REGISTRAR_ASISTENCIA'
+,p_button_name=>'BTN_ESTUDIANTES'
 ,p_button_action=>'REDIRECT_PAGE'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>4072362960822175091
-,p_button_image_alt=>'Registrar Asistencia'
-,p_button_redirect_url=>'f?p=&APP_ID.:5:&SESSION.::&DEBUG.:::'
-,p_grid_new_row=>'Y'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>2082829544945815391
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>unistr('Gesti\00F3n de Estudiantes')
+,p_button_redirect_url=>'f?p=&APP_ID.:2:&SESSION.::&DEBUG.:::'
+,p_icon_css_classes=>'fa-user-graduate'
+,p_grid_new_row=>'N'
+,p_grid_column=>1
 );
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(113248037058407271807)
-,p_button_sequence=>40
+,p_button_sequence=>30
 ,p_button_plug_id=>wwv_flow_imp.id(113248036839173271805)
 ,p_button_name=>'BTN_REPORTE_ASISTENCIAS'
 ,p_button_action=>'REDIRECT_PAGE'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>4072362960822175091
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>2082829544945815391
+,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Reporte Asistencias'
 ,p_button_redirect_url=>'f?p=&APP_ID.:4:&SESSION.::&DEBUG.:::'
+,p_icon_css_classes=>'fa-table'
 ,p_grid_new_row=>'N'
-,p_grid_new_column=>'Y'
+,p_grid_column=>1
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(113248037129210271808)
+,p_button_sequence=>50
+,p_button_plug_id=>wwv_flow_imp.id(113248036839173271805)
+,p_button_name=>'BTN_REGISTRAR_ASISTENCIA'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft'
+,p_button_template_id=>2082829544945815391
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Registrar Asistencia'
+,p_button_redirect_url=>'f?p=&APP_ID.:5:&SESSION.::&DEBUG.:::'
+,p_icon_css_classes=>'fa-check-square'
+,p_grid_new_row=>'N'
+,p_grid_column=>1
 );
 end;
 /
@@ -1280,7 +1294,20 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_report_alias=>'1132508710'
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
+,p_view_mode=>'REPORT'
 ,p_report_columns=>'ID_EST:NOMBRE:CORREO:ACTIVO'
+,p_sort_column_1=>'NOMBRE'
+,p_sort_direction_1=>'ASC'
+,p_sort_column_2=>'0'
+,p_sort_direction_2=>'ASC'
+,p_sort_column_3=>'0'
+,p_sort_direction_3=>'ASC'
+,p_sort_column_4=>'0'
+,p_sort_direction_4=>'ASC'
+,p_sort_column_5=>'0'
+,p_sort_direction_5=>'ASC'
+,p_sort_column_6=>'0'
+,p_sort_direction_6=>'ASC'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(113240650704347076126)
@@ -1359,9 +1386,9 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Apply Changes'
 ,p_button_position=>'CHANGE'
-,p_button_alignment=>'RIGHT'
 ,p_button_condition=>'P3_ID_EST'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_icon_css_classes=>'fa-save'
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_imp_page.create_page_button(
@@ -1374,8 +1401,8 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_template_id=>4072362960822175091
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'CLOSE'
-,p_button_alignment=>'RIGHT'
 ,p_button_redirect_url=>'f?p=&APP_ID.:2:&APP_SESSION.::&DEBUG.:::'
+,p_icon_css_classes=>'fa-arrow-left'
 );
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(113240645398064076121)
@@ -1403,12 +1430,12 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_template_id=>4072362960822175091
 ,p_button_image_alt=>'Delete'
 ,p_button_position=>'DELETE'
-,p_button_alignment=>'RIGHT'
 ,p_button_execute_validations=>'N'
 ,p_confirm_message=>'&APP_TEXT$DELETE_MSG!RAW.'
 ,p_confirm_style=>'danger'
 ,p_button_condition=>'P3_ID_EST'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_icon_css_classes=>'fa-trash'
 ,p_database_action=>'DELETE'
 );
 wwv_flow_imp_page.create_page_branch(
@@ -1447,14 +1474,12 @@ wwv_flow_imp_page.create_page_item(
 ,p_item_sequence=>20
 ,p_item_plug_id=>wwv_flow_imp.id(113240640867007076116)
 ,p_item_source_plug_id=>wwv_flow_imp.id(113240640867007076116)
-,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Nombre'
 ,p_source=>'NOMBRE'
 ,p_source_type=>'REGION_SOURCE_COLUMN'
 ,p_display_as=>'NATIVE_TEXT_FIELD'
 ,p_cSize=>32
 ,p_cMaxlength=>100
-,p_label_alignment=>'RIGHT'
 ,p_field_template=>1609122147107268652
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
@@ -1663,7 +1688,20 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_report_alias=>'1132512941'
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
+,p_view_mode=>'REPORT'
 ,p_report_columns=>'ID_ASIST:ID_EST:FECHA_ASIST:ESTADO:OBSERVACION'
+,p_sort_column_1=>'FECHA_ASIST'
+,p_sort_direction_1=>'ASC'
+,p_sort_column_2=>'0'
+,p_sort_direction_2=>'ASC'
+,p_sort_column_3=>'0'
+,p_sort_direction_3=>'ASC'
+,p_sort_column_4=>'0'
+,p_sort_direction_4=>'ASC'
+,p_sort_column_5=>'0'
+,p_sort_direction_5=>'ASC'
+,p_sort_column_6=>'0'
+,p_sort_direction_6=>'ASC'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(113241516739299094896)
@@ -1741,9 +1779,9 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Apply Changes'
 ,p_button_position=>'CHANGE'
-,p_button_alignment=>'RIGHT'
 ,p_button_condition=>'P5_ID_ASIST'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_icon_css_classes=>'fa-check'
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_imp_page.create_page_button(
@@ -1756,8 +1794,8 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_template_id=>4072362960822175091
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'CLOSE'
-,p_button_alignment=>'RIGHT'
 ,p_button_redirect_url=>'f?p=&APP_ID.:4:&APP_SESSION.::&DEBUG.:::'
+,p_icon_css_classes=>'fa-arrow-left'
 );
 wwv_flow_imp_page.create_page_button(
  p_id=>wwv_flow_imp.id(113241510950533094890)
@@ -1770,9 +1808,9 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'CREATE'
-,p_button_alignment=>'RIGHT'
 ,p_button_condition=>'P5_ID_ASIST'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_icon_css_classes=>'fa-check'
 ,p_database_action=>'INSERT'
 );
 wwv_flow_imp_page.create_page_button(
